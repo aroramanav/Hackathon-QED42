@@ -1,0 +1,91 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+public class Main
+{
+    static Scanner sc = new Scanner(System.in);
+    static int e1[] = new int[6];
+    static int e2[] = new int[6]; static int c = 1;
+    static int month[] = {31,0,31,30,31,30,31,31,30,31,30,31};                        // Global declaration of Arrays
+    static void isLeap(int l)
+    {
+        if((l%4==0 && l%100!=0) || l%400==0)      //Testing for Leap year as per Gregorian Calendar
+        month[1] = 29;
+        else
+        month[1] = 28;
+    }
+    static void accept()
+    {
+        for(int i = 0; i<6;i++)
+        {
+            if(c<7){
+            e1[i]=sc.nextInt();c++;}                               // Variable c decides whether elements are of Second Event or First
+            else 
+            e2[i]=sc.nextInt();
+        }
+    }
+    static boolean check(int e[])                                  // Checks if events 
+    {
+        if(e[1]!=e[4] && (e[3]+month[e[1]-1]-e[0])<=30)
+        return true;
+        else if(e[1]==e[4] && e[3]-e[0]<=30)
+        return true;
+        return false;
+    } 
+    static void output()
+    {
+        if(e1[4]==e2[1])
+        {
+            if(e2[0]<=e1[3])
+            {
+                for(int i = e2[0]+1; i<(int)Math.min(e1[3],e2[3]);i++)
+                {
+                    System.out.println(i + "/" + e1[4] + "/" + e1[5]);
+                }
+            }
+        }
+        else if(e1[4]==(e2[1]+1))
+        {
+            if(e1[4]==e2[4])
+            {
+                for(int i = e2[0]+1; i<(int)Math.min(e1[3],e2[3])+month[e2[1]-1]; i++)
+                {
+                    if(i>month[e2[1]-1])
+                    System.out.println(i%month[e2[1]-1] + "/" + e1[4] + "/" + e1[5]);
+                    else
+                    System.out.println(i + "/" + e2[1] + "/" + e1[5]);
+                }
+            }
+            else
+            {
+                for(int i = e2[0]+1; i<e2[3]; i++)
+                {
+                    System.out.println(i + "/" + e2[1] + "/" + e1[5]);
+                }
+            }
+        }
+        else
+        System.out.println("No common dates :(");
+    }
+    public static void main(String[] args)
+    {
+        System.out.println("Enter the Two dates for first event [In six Inputs]");
+        accept();
+        System.out.println("Enter the Two dates for second event [In six Inputs]");
+        accept();
+        isLeap(e1[2]);
+        if((e1[0]+e1[1])>(e1[0]+e1[1]))                              // Shifting Earlier date to first Array, if its not already
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                 e1[i] = e1[i] + e2[i];
+		 e2[i] = e1[i] - e2[i];
+		 e1[i] = e1[i] - e2[i];
+            }
+        }
+        if(check(e1) && check (e2) && e1[5]==e2[5])
+        output();
+        else
+        System.out.println("Wrong Input :(");
+    }
+}
