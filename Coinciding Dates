@@ -22,7 +22,7 @@ public class Main
             e2[i]=sc.nextInt();
         }
     }
-    static boolean check(int e[])                                  // Checks if events 
+    static boolean check(int e[])                                  // Checks if event dates are not more than 30 days apart
     {
         if(e[1]!=e[4] && (e[3]+month[e[1]-1]-e[0])<=30)
         return true;
