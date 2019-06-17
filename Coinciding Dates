@@ -72,7 +72,7 @@ public class Main
         System.out.println("Enter the Two dates for second event [In six Inputs]");
         accept();
         isLeap(e1[2]);
-        if((e1[0]+e1[1])>(e1[0]+e1[1]))                              // Shifting Earlier date to first Array, if its not already
+        if(e1[1]>e2[1] || (e1[1]==e2[1]&& e1[0]>e2[0]))                              // Shifting Earlier date to first Array, if its not already
         {
             for (int i = 0; i < 6; i++)
             {
