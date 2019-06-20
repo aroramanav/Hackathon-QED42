@@ -81,8 +81,10 @@ public class Main
 		 e1[i] = e1[i] - e2[i];
             }
         }
-        if(check(e1) && check (e2) && e1[5]==e2[5])
+        if(check(e1) && check (e2)  && e1[5]==e2[5])
         output();
+	else if(e1[5]!=e2[5]
+	System.out.println("No common dates :(");
         else
         System.out.println("Wrong Input :(");
     }
